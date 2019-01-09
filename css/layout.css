@@ -1,0 +1,59 @@
+h1 {
+  text-align: center;
+  font-size: 70pt;
+  font-family: 'Amatic SC', cursive;
+  padding-top: 20px;
+}
+
+h2 {
+  font-size: 20pt;
+  font-family: 'Economica', sans-serif;
+  margin-bottom: 10px;
+}
+
+body {
+  background-color: black;
+  color: white;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+div {
+  width: 100px;
+  margin: 0 auto;
+}
+
+select {
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+}
+
+#photo-template {
+  display: none;
+}
+
+section {
+  float: left;
+  width: 25%;
+  height: 200px;
+  margin-bottom: 150px;
+  text-align: center;
+}
+
+img {
+  height: 95%;
+  width: 95%;
+  
+
+}
+p {
+  padding-bottom: 20px;
+  margin-top: 10px;
+}
+
+footer {
+  width: 200px;
+  margin: 0 auto;
+  position: relative;
+}
