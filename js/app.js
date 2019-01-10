@@ -31,7 +31,7 @@ Photo.prototype.render = function () {
 }
 
 Photo.readJson = () => {
-  $.get('../data/page-1.json', 'json')
+  $.get('./data/page-1.json', 'json')
     .then(data => {
       console.log(data);
       data.forEach(photo => {
