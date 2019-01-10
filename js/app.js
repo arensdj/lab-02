@@ -1,13 +1,5 @@
 'use strict';
 
-// function Photo(photoData) {
-//   this.image_url = photoData.image_url;
-//   this.title = photoData.title;
-//   this.description = photoData.description;
-//   this.keyword = photoData.keyword;
-//   this.horns = photoData.horns;
-// }
-
 Photo.photoDataSet = [];
 Photo.photosToRender = [];
 
@@ -20,11 +12,9 @@ Photo.readJson = (pageUrl = 'data/page-1.json') => {
       });
     })
     .then(() => {
-      Photo.render()
+      Photo.render(Photo.photoDataSet)
     })
-    .then(Photo.createOptions)
-    //.then()
-    ;
+    .then(Photo.createOptions);
 };
 
 function Photo (photoObject) {
@@ -36,15 +26,17 @@ function Photo (photoObject) {
 Photo.prototype.toHtml = function () {
   let $htmlTemplate = $('#photo-gallery-template').html();
   let templateRender = Handlebars.compile($htmlTemplate);
-  console.log(templateRender);
   return templateRender(this);
 };
 
-Photo.render = () => {
-  Photo.photoDataSet.forEach(photoObject => {
+Photo.render = (dataObj) => {
+  Photo.photosToRender = [];
+  dataObj.forEach(photoObject => {
     Photo.photosToRender.push(new Photo(photoObject));
   });
-  console.log(Photo.photoDataSet);
+
+  $('#photo-template').empty();
+
   Photo.photosToRender.forEach(ourPhotoObject => {
     $('#photo-template').append(ourPhotoObject.toHtml());
   });
@@ -52,22 +44,45 @@ Photo.render = () => {
 
 Photo.createOptions = () => {
   const $selector = $('select');
+  $('.dynamic-option').remove();
   let optionsAlreadyIncluded = [];
+
   Photo.photoDataSet.forEach((photo) => {
     if (!optionsAlreadyIncluded.includes(photo.keyword)) {
       optionsAlreadyIncluded.push(photo.keyword);
       let $newOption = $('select option:first').clone();
       $newOption.text(photo.keyword);
       $newOption.val(photo.keyword);
+      $newOption.addClass('dynamic-option');
       $selector.append($newOption);
     }
   });
-  // $selector.on('change', function() {
-  //   Photo.filterPhotos($(this).val());
-  // });
+  $selector.on('change', function() {
+    Photo.filterPhotos(Photo.photoDataSet, $(this).val());
+  });
 };
 
-$(() => Photo.readJson());
+Photo.filterPhotos = (dataObj, filter) => {
+  const outputData = [];
+  dataObj.forEach((val) => {
+    if (val.keyword === filter) {
+      outputData.push(val);
+    }
+  });
+  Photo.render(outputData);
+};
+
+$(() => { 
+  Photo.readJson(); 
+
+  $('#button1').on('click', () => {
+    Photo.readJson('/data/page-1.json');
+  });
+
+  $('#button2').on('click', () => {
+    Photo.readJson('/data/page-2.json');
+  });
+});
 
 // Photo.allPhotos = [];
 
