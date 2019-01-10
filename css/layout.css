@@ -1,4 +1,4 @@
-h1 {
+/* h1 {
   text-align: center;
   font-size: 70pt;
   font-family: 'Amatic SC', cursive;
@@ -21,6 +21,7 @@ body {
 div {
   width: 100px;
   margin: 0 auto;
+  border: 10px solid red;
 }
 
 select {
@@ -56,4 +57,4 @@ footer {
   width: 200px;
   margin: 0 auto;
   position: relative;
-}
+} */
