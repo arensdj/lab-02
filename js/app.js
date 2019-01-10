@@ -43,7 +43,7 @@ Photo.render = (dataObj) => {
 };
 
 Photo.createOptions = () => {
-  const $selector = $('select');
+  const $selector = $('#filter');
   $('.dynamic-option').remove();
   let optionsAlreadyIncluded = [];
 
@@ -61,6 +61,26 @@ Photo.createOptions = () => {
     Photo.filterPhotos(Photo.photoDataSet, $(this).val());
   });
 };
+
+Photo.sortPhotos = (dataObj, sortOn) => {
+	if (sortOn === 'Horns') {
+    console.log('horns');
+		dataObj.sort((a, b) => {
+			return a.horns - b.horns;
+		});
+	} else if (sortOn === 'Title') {
+    console.log('title');
+		dataObj.sort((a, b) => {
+			if (a === b) return 0;
+			return a.title > b.title ? 1 : -1;
+		});
+  }
+	Photo.render(dataObj);
+};
+
+$('#sorter').on('change', function() {
+	Photo.sortPhotos(Photo.photoDataSet, $(this).val());
+});
 
 Photo.filterPhotos = (dataObj, filter) => {
   const outputData = [];
