@@ -54,6 +54,7 @@ Photo.createOptions = () => {
       $newOption.text(photo.keyword);
       $newOption.val(photo.keyword);
       $newOption.addClass('dynamic-option');
+      $newOption.attr('alt', photo.keyword);
       $selector.append($newOption);
     }
   });
@@ -63,23 +64,23 @@ Photo.createOptions = () => {
 };
 
 Photo.sortPhotos = (dataObj, sortOn) => {
-	if (sortOn === 'Horns') {
+  if (sortOn === 'Horns') {
     console.log('horns');
-		dataObj.sort((a, b) => {
-			return a.horns - b.horns;
-		});
-	} else if (sortOn === 'Title') {
+    dataObj.sort((a, b) => {
+      return a.horns - b.horns;
+    });
+  } else if (sortOn === 'Title') {
     console.log('title');
-		dataObj.sort((a, b) => {
-			if (a === b) return 0;
-			return a.title > b.title ? 1 : -1;
-		});
+    dataObj.sort((a, b) => {
+      if (a === b) return 0;
+      return a.title > b.title ? 1 : -1;
+    });
   }
-	Photo.render(dataObj);
+  Photo.render(dataObj);
 };
 
 $('#sorter').on('change', function() {
-	Photo.sortPhotos(Photo.photoDataSet, $(this).val());
+  Photo.sortPhotos(Photo.photoDataSet, $(this).val());
 });
 
 Photo.filterPhotos = (dataObj, filter) => {
@@ -103,66 +104,3 @@ $(() => {
     Photo.readJson('/data/page-2.json');
   });
 });
-
-// Photo.allPhotos = [];
-
-// Photo.prototype.render = function () {
-
-//   $('main').append('<section class="clone"></section>');
-//   const $photoClone = $('section[class="clone"]');
-
-
-//   const $photoHtml = $('#photo-template').html();
-
-
-//   $photoClone.html($photoHtml);
-
-
-//   $photoClone.find('h2').text(this.title);
-//   $photoClone.find('img').attr('src', this.image_url);
-//   $photoClone.find('p').text(this.description);
-//   $photoClone.removeClass('clone');
-//   $photoClone.addClass(this.title);
-//   $photoClone.attr('data-keyword', this.keyword);
-// }
-
-// Photo.readJson = () => {
-//   $.get('./data/page-1.json', 'json')
-//     .then(data => {
-//       console.log(data);
-//       data.forEach(photo => {
-//         Photo.allPhotos.push(new Photo(photo));
-//       });
-//     })
-//     .then(Photo.loadPhotos)
-//     .then(Photo.createOptions);
-// };
-
-// Photo.createOptions = () => {
-//   let $selector = $('select');
-//   // console.log(Photo.allPhotos);
-//   Photo.allPhotos.forEach((photo) => {
-//     let $newOption = $('select option:first').clone();
-//     $newOption.text(photo.keyword);
-//     $newOption.val(photo.keyword);
-//     $selector.append($newOption);
-//   });
-//   $selector.on('change', function() {
-//     Photo.filterPhotos($(this).val());
-//   });
-// };
-
-// Photo.filterPhotos = (filter) => {
-//   $('section').hide();
-//   Photo.allPhotos.forEach((photo) => { //eslint-disable-line
-//     $(`section[data-keyword=${filter}]`).show();
-//   });
-// }
-
-// Photo.loadPhotos = () => {
-//   Photo.allPhotos.forEach(photo => photo.render());
-// };
-
-// $(() => Photo.readJson());
-
-
