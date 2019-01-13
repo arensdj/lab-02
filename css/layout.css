@@ -1,24 +1,5 @@
- h1 {
-  text-align: center;
-  font-size: 70px;
-  font-family: 'Amatic SC', cursive;
-  padding-top: 20px;
-}
-
-h2 {
-  font-size: 20px;
-  height: 2em;
-  font-family: 'Economica', sans-serif;
-  margin-bottom: 10px;
-}
-
-
-body {
-  background-color: black;
-  color: white;
-  margin-left: 20px;
-  margin-right: 20px;
-}
+/*     Sections, Articles
+--------------------------------*/ 
 
 section {
   display: flex;
@@ -27,8 +8,6 @@ section {
 }
 
 section div {
-  /* flex-wrap: wrap; */
-  /* justify-content: space-evenly; */
   width: 300px;
   height: 300px;
   margin-top: 20px;
@@ -41,42 +20,3 @@ img {
   height: 100%;
   width: 100%;
 }
-
-/* #photo-template {
-  display: none;
-} */
-
-/*
-div {
-  width: 100px;
-  margin: 0 auto;
-  border: 10px solid red;
-}
-
-select {
-  margin-top: 20px;
-  margin-bottom: 20px;
-
-}
-
-
-
-section {
-  float: left;
-  width: 25%;
-  height: 200px;
-  margin-bottom: 150px;
-  text-align: center;
-}
-
-
-p {
-  padding-bottom: 20px;
-  margin-top: 10px;
-}
-
-footer {
-  width: 200px;
-  margin: 0 auto;
-  position: relative;
-} */
